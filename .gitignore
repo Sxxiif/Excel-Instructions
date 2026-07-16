@@ -1,0 +1,15 @@
+# Excel temporary files
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Temporary exports
+*.tmp
