@@ -1,0 +1,103 @@
+EXCEL GUIDE – SEPARATE NAME, IN TIME, OUT TIME, AND DEPARTMENT
+
+PURPOSE
+Use these formulas when one cell contains data in this format:
+
+Ahmed Ali Information Technology 8:00 - 3:00
+
+The final columns will be:
+
+A = Original Data
+B = Name
+C = In
+D = Out
+E = Department
+
+
+IMPORTANT CONDITIONS
+
+1. The original text must be in Column A.
+2. The first data row must be Row 5.
+3. The employee name must contain exactly two words.
+4. The time must be at the end of the text.
+5. The time range must use this format:
+
+8:00 - 3:00
+
+There must be spaces before and after the dash.
+
+
+FORMULAS
+
+B5 – NAME
+
+=LEFT(A5,FIND(" ",A5,FIND(" ",A5)+1)-1)
+
+
+C5 – IN TIME
+
+=TRIM(RIGHT(SUBSTITUTE(LEFT(A5,FIND(" - ",A5)-1)," ",REPT(" ",100)),100))
+
+
+D5 – OUT TIME
+
+=TRIM(MID(A5,FIND(" - ",A5)+3,100))
+
+
+E5 – DEPARTMENT
+
+=TRIM(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A5,B5,""),C5,"")," - "&D5,""))
+
+
+HOW TO APPLY THE FORMULAS
+
+1. Paste the original combined information into Column A, starting from cell A5.
+2. Paste the Name formula into B5.
+3. Paste the In Time formula into C5.
+4. Paste the Out Time formula into D5.
+5. Paste the Department formula into E5.
+6. Select cells B5:E5.
+7. Move the mouse to the small square at the bottom-right corner of the selection.
+8. Double-click the square, or drag it downward, to apply the formulas to all rows.
+
+
+EXAMPLE
+
+Original data:
+
+Ahmed Ali Information Technology 8:00 - 3:00
+
+Result:
+
+Name: Ahmed Ali
+In: 8:00
+Out: 3:00
+Department: Information Technology
+
+
+TIME FORMATTING
+
+To format the In and Out columns:
+
+1. Select Columns C and D.
+2. Right-click and select Format Cells.
+3. Select Custom.
+4. Enter:
+
+h:mm
+
+5. Click OK.
+
+
+COMMON ERRORS
+
+#NAME?
+This means the Excel version does not support a function used in the formula. The formulas in this guide are compatible with older Excel versions.
+
+#####
+This means the column is too narrow. Make the column wider.
+
+Wrong result:
+Check that the employee name contains exactly two words and that the time range uses spaces around the dash:
+
+8:00 - 3:00
